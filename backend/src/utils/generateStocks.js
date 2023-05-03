@@ -1,4 +1,4 @@
-export default generateStock = (price, startDate, endDate) => {
+const generateStocks = (price, startDate, endDate) => {
 	let prices = [];
 
 	for (let i = startDate.getTime(); i < endDate.getTime(); i += 1000) {
@@ -10,3 +10,5 @@ export default generateStock = (price, startDate, endDate) => {
 
 	return prices;
 };
+
+module.exports = generateStocks;

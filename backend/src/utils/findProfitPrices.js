@@ -1,4 +1,4 @@
-export default findProfitPrices = array => {
+const findProfitPrices = array => {
 	if (array.length < 2) {
 		return new Error('Array is not long enough');
 	}
@@ -22,3 +22,5 @@ export default findProfitPrices = array => {
 
 	return prices;
 };
+
+module.exports = findProfitPrices;
