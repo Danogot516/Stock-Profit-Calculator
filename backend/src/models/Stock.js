@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const stockSchema = new mongoose.Schema({
 	timestamp: {
 		type: Number,
+		index: true,
 		required: true,
 	},
 	price: {

@@ -23,9 +23,13 @@ router.get('/stocks', async (req, res) => {
 			'-_id -__v'
 		).lean();
 
-		const prices = findProfitPrices(stocks);
+		const response = findProfitPrices(stocks);
 
-		res.send({ buyPrice: prices[0], sellPrice: prices[1] });
+		if (response.error) {
+			res.send(406).send({ message: error });
+		}
+
+		res.send({ buyPrice: response.result[0], sellPrice: response.result[1] });
 	} catch (e) {
 		res.status(500).send({ message: e.message });
 	}
