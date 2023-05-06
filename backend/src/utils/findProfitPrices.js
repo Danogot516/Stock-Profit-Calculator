@@ -1,6 +1,8 @@
+const HttpError = require('../errors/HttpError');
+
 const findProfitPrices = array => {
 	if (array.length < 2) {
-		return { error: 'Array is not long enough' };
+		return new HttpError('Array is not long enough', 406);
 	}
 
 	let maxProfit = -1;
@@ -17,7 +19,7 @@ const findProfitPrices = array => {
 	}
 
 	if (!prices || prices[0].price === prices[1].price) {
-		return { error: 'No profit found in given stocks' };
+		return new Error('No profit found in given stocks', 406);
 	}
 
 	return { result: prices };
