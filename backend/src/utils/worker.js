@@ -1,12 +1,10 @@
-const {
-	workerData: { startDate, endDate, startIndex, endIndex },
-	parentPort,
-} = require('worker_threads');
 const findProfitPrices = require('./findProfitPrices');
 const Stock = require('../models/Stock');
-require('../db/mongoose');
+const mongoose = require('mongoose');
 
-(async () => {
+module.exports = async ({ startDate, endDate, startIndex, endIndex }) => {
+	mongoose.connect(process.env.MONGODB_URL, { serverSelectionTimeoutMS: 1000 });
+
 	try {
 		const stocks = await Stock.find(
 			{
@@ -20,8 +18,8 @@ require('../db/mongoose');
 
 		const result = findProfitPrices(stocks);
 
-		parentPort.postMessage({ result });
+		return result;
 	} catch (e) {
-		parentPort.postMessage({ error: e.message });
+		return { error: e.message };
 	}
-})();
+};

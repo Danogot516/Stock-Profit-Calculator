@@ -1,35 +1,23 @@
-const { Worker } = require('worker_threads');
+const Piscina = require('piscina');
 
-const runWorker = (workerData, retries = 3) => {
-	return new Promise(async (resolve, reject) => {
-		if (retries === 0) {
-			reject(new Error('Maximum retries reached'));
-			return;
-		}
+const piscina = new Piscina({
+	filename: './src/utils/worker.js',
+});
 
-		const worker = new Worker('./src/utils/worker.js', { workerData });
+const runWorker = async (workerData, retries = 3) => {
+	if (retries === 0) {
+		throw new Error('Maximum retries reached');
+	}
 
-		worker.on('message', message => {
-			if (message.error) {
-				console.error(`Error from worker: ${message.error}. Retrying...`);
+	try {
+		const result = await piscina.run(workerData);
 
-				// Retry the work by calling runWorker again with decremented retries
-				runWorker(workerData, retries - 1)
-					.then(resolve)
-					.catch(reject);
-			} else {
-				resolve(message.result);
-			}
-		});
+		return result;
+	} catch (error) {
+		console.error(`Error from worker: ${error.message}. Retrying...`);
 
-		worker.on('error', reject);
-
-		worker.on('exit', code => {
-			if (code !== 0) {
-				reject(new Error(`Worker stopped with exit code ${code}`));
-			}
-		});
-	});
+		return runWorker(workerData, retries - 1);
+	}
 };
 
 module.exports = runWorker;

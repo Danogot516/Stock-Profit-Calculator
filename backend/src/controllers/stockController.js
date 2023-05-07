@@ -1,4 +1,3 @@
-const Stock = require('../models/Stock');
 const findProfitPrices = require('../utils/findProfitPrices');
 const os = require('os');
 const runWorker = require('../utils/runWorker');
@@ -28,10 +27,7 @@ const getStocks = async (req, res) => {
 		}
 
 		const results = await Promise.all(promises);
-		const stocks = results.flatMap(result => [
-			result.result[0],
-			result.result[1],
-		]);
+		const stocks = results.flatMap(data => [data.result[0], data.result[1]]);
 
 		const response = findProfitPrices(stocks);
 
