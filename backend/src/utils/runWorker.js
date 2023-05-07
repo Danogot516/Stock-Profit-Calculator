@@ -18,7 +18,7 @@ const runWorker = (workerData, retries = 3) => {
 					.then(resolve)
 					.catch(reject);
 			} else {
-				resolve(message.result);
+				resolve(message);
 			}
 		});
 

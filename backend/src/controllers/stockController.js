@@ -28,19 +28,14 @@ const getStocks = async (req, res) => {
 		}
 
 		const results = await Promise.all(promises);
-		const stocks = results.flatMap(result => [
-			result.result[0],
-			result.result[1],
-		]);
-
-		const response = findProfitPrices(stocks);
-
-		const prices = response.result.map(stock => {
+		const flattenedResults = results.flatMap(result => result.data);
+		const stocksProfit = findProfitPrices(flattenedResults);
+		const response = stocksProfit.result.map(stock => {
 			stock.price /= 100;
 			return stock;
 		});
 
-		res.send(prices);
+		res.send(response);
 	} catch (e) {
 		const statusCode = e.statusCode ? e.statusCode : 500;
 		res.status(statusCode).send({ message: e.message });
