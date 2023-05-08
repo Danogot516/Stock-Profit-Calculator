@@ -33,8 +33,8 @@ if (isNaN(Date.parse(startDate)) || isNaN(Date.parse(endDate))) {
 		await seedDatabaseStocksMinutes(chunkSize);
 
 		process.exit();
-	} catch (e) {
-		console.log(e.message);
+	} catch (error) {
+		console.log(error.message);
 		process.exit();
 	}
 })();

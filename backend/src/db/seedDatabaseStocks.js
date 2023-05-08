@@ -7,27 +7,22 @@ const seedDatabaseStocks = async (
 	startDate,
 	endDate
 ) => {
-	try {
-		await Stock.deleteMany({});
-		console.log('Deleted old documents');
-		const stocks = generateStocks(initialPrice, startDate, endDate);
-		console.log('Generated stock prices');
+	await Stock.deleteMany({});
+	console.log('Deleted old documents');
+	const stocks = generateStocks(initialPrice, startDate, endDate);
+	console.log('Generated stock prices');
 
-		for (let i = 0; i < stocks.length; i += chunkSize) {
-			const chunk = stocks.slice(i, i + chunkSize);
-			await Stock.insertMany(chunk);
+	for (let i = 0; i < stocks.length; i += chunkSize) {
+		const chunk = stocks.slice(i, i + chunkSize);
+		await Stock.insertMany(chunk);
 
-			console.log(
-				`Inserted ${chunkSize} stock prices starting from ${new Date(
-					chunk[0].timestamp
-				).toISOString()} and ending at ${new Date(
-					chunk[chunk.length - 1].timestamp
-				).toISOString()}`
-			);
-		}
-	} catch (error) {
-		console.log(error);
-		throw error;
+		console.log(
+			`Inserted ${chunkSize} stock prices starting from ${new Date(
+				chunk[0].timestamp
+			).toISOString()} and ending at ${new Date(
+				chunk[chunk.length - 1].timestamp
+			).toISOString()}`
+		);
 	}
 };
 
