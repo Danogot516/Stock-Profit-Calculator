@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/.env.dev nodemon src/index.js",
-    "seed-database": "env-cmd -f ./config/.env.db node src/scripts/seedDatabase.js"
+    "seed-database": "env-cmd -f ./config/.env.db node src/scripts/seedDatabase.js",
+    "clear-cache": "node src/scripts/clearCache.js"
   },
   "jest": {
     "testEnvironment": "node"
@@ -19,6 +20,7 @@
     "minimist": "^1.2.8",
     "mongodb": "^5.3.0",
     "mongoose": "^7.0.5",
+    "persistent-cache": "^1.1.2",
     "piscina": "^3.2.0"
   },
   "devDependencies": {

@@ -19,6 +19,7 @@ const getStocks = async (req, res) => {
 			return stock;
 		});
 
+		req.prices = prices;
 		res.send(prices);
 	} catch (e) {
 		const statusCode = e.statusCode ? e.statusCode : 500;
