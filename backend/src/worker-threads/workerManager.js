@@ -1,8 +1,8 @@
 const findProfitPrices = require('../utils/findProfitPrices');
 const runWorker = require('./runWorker');
-
 const os = require('os');
-const numWorkers = Math.min(os.cpus().length, 4);
+
+const numWorkers = Math.min(os.cpus().length, process.env.MAX_WORKERS_THREADS);
 
 const workerManager = async (startDate, endDate) => {
 	const totalDataSize = (endDate - startDate) / 1000 + 1;
