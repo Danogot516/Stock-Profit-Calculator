@@ -1,28 +1,44 @@
 const HttpError = require('../errors/HttpError');
 
-const findProfitPrices = array => {
+const findProfitPrices = (array, addMinMaxPrices = false) => {
 	if (array.length < 2) {
 		return new HttpError('Array is not long enough', 406);
 	}
 
 	let maxProfit = -1;
-	let minPrice = { ...array[0] };
-	let prices;
+	let minPrice = array[0];
+	let maxPrice = array[array.length - 1];
+	let stocks;
 
 	for (let i = 1; i < array.length; ++i) {
 		if (array[i].price < minPrice.price) {
-			minPrice = { ...array[i] };
-		} else if (array[i].price - minPrice.price > maxProfit) {
+			minPrice = array[i];
+		} else if (array[i].price > maxPrice.price) {
+			maxPrice = array[i];
+		}
+
+		if (array[i].price - minPrice.price > maxProfit) {
 			maxProfit = array[i].price - minPrice.price;
-			prices = [{ ...minPrice }, { ...array[i] }];
+			stocks = [{ ...minPrice }, { ...array[i] }];
 		}
 	}
 
-	if (!prices || prices[0].price === prices[1].price) {
+	if (addMinMaxPrices) {
+		if (!stocks.find(stock => stock.timestamp === minPrice.timestamp)) {
+			stocks.push({ ...minPrice });
+		}
+		if (!stocks.find(stock => stock.timestamp === maxPrice.timestamp)) {
+			stocks.push({ ...maxPrice });
+		}
+
+		stocks.sort((a, b) => a.timestamp - b.timestamp);
+	}
+
+	if ((!stocks || stocks[0].price === stocks[1].price) && !addMinMaxPrices) {
 		return new Error('No profit found in given stocks', 406);
 	}
 
-	return { result: prices };
+	return stocks;
 };
 
 module.exports = findProfitPrices;

@@ -1,7 +1,7 @@
 const Piscina = require('piscina');
 
 const piscina = new Piscina({
-	filename: './src/utils/worker.js',
+	filename: './src/worker-threads/worker.js',
 });
 
 const runWorker = async (workerData, retries = 3) => {
