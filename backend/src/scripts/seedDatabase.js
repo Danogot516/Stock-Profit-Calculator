@@ -1,21 +1,22 @@
 require('../db/mongoose');
 const seedDatabaseStocksMinutes = require('../db/seedDatabaseStockMinutes');
 const seedDatabaseStocks = require('../db/seedDatabaseStocks');
-const { price, chunkSize, startDate, endDate } = require('minimist')(
-	process.argv.slice(2)
-);
+const {
+	PRICE,
+	CHUNK_SIZE,
+	START_DATE: startDate,
+	END_DATE: endDate,
+} = process.env;
 
-const PRICE = price || 200;
-const CHUNK_SIZE = chunkSize || 20000;
-const START_DATE = startDate || '2023-05-01';
-const END_DATE = endDate || '2023-06-01';
+const price = +PRICE;
+const chunkSize = +CHUNK_SIZE;
 
-if (!PRICE || !CHUNK_SIZE || !START_DATE || !END_DATE) {
+if (!price || !chunkSize || !startDate || !endDate) {
 	console.log('Missing environment variables!');
 	process.exit();
 }
 
-if (isNaN(Date.parse(START_DATE)) || isNaN(Date.parse(END_DATE))) {
+if (isNaN(Date.parse(startDate)) || isNaN(Date.parse(endDate))) {
 	console.log('Date environment variables are invalid!');
 	process.exit();
 }
@@ -23,13 +24,13 @@ if (isNaN(Date.parse(START_DATE)) || isNaN(Date.parse(END_DATE))) {
 (async () => {
 	try {
 		await seedDatabaseStocks(
-			PRICE,
-			CHUNK_SIZE,
-			new Date(START_DATE),
-			new Date(END_DATE)
+			price,
+			chunkSize,
+			new Date(startDate),
+			new Date(endDate)
 		);
 
-		await seedDatabaseStocksMinutes(CHUNK_SIZE);
+		await seedDatabaseStocksMinutes(chunkSize);
 
 		process.exit();
 	} catch (e) {
