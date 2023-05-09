@@ -1,4 +1,4 @@
-const { getAsync, putAsync } = require('../src/utils/cache');
+const { getAsync, putAsync } = require('../utils/cache');
 
 const getKeyFromRequest = req => req.query.timespan;
 
