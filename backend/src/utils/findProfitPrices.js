@@ -35,7 +35,7 @@ const findProfitPrices = (array, addMinMaxPrices = false) => {
 	}
 
 	if ((!stocks || stocks[0].price === stocks[1].price) && !addMinMaxPrices) {
-		return new Error('No profit found in given stocks', 406);
+		return new HttpError('No profit found in given stocks', 406);
 	}
 
 	return stocks;
