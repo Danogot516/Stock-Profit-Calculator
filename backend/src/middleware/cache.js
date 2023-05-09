@@ -4,11 +4,11 @@ const getKeyFromRequest = (req, cachingKey) => req.query[cachingKey];
 
 const cacheMiddleware = (cachingKey, cachingParameter) => {
 	return async (req, res, next) => {
-		const key = getKeyFromRequest(req, cachingKey);
+		const key = getKeyFromRequest(req, cachingKey) || cachingParameter;
 		const content = await getAsync(key);
 
 		res.on('finish', () => {
-			if (req.prices && !content) {
+			if (req[cachingParameter] && !content) {
 				putAsync(key, req[cachingParameter]);
 			}
 		});

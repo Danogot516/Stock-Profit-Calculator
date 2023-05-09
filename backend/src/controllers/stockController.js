@@ -1,4 +1,5 @@
 const workerManager = require('../worker-threads/workerManager');
+const Stock = require('../models/Stock');
 
 const getStocks = async (req, res) => {
 	if (!req.query.timespan) {
@@ -27,4 +28,20 @@ const getStocks = async (req, res) => {
 	}
 };
 
-module.exports = { getStocks };
+const getTimespan = async (req, res) => {
+	try {
+		const startDate = await Stock.findOne({}).sort({ timestamp: 1 }).lean();
+		const endDate = await Stock.findOne({}).sort({ timestamp: -1 }).lean();
+		const timespan = {
+			startDate: startDate.timestamp,
+			endDate: endDate.timestamp,
+		};
+
+		req.timespan = timespan;
+		res.send(timespan);
+	} catch (e) {
+		res.status(500).send({ message: e.message });
+	}
+};
+
+module.exports = { getStocks, getTimespan };

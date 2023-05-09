@@ -10,4 +10,11 @@ router.get(
 	stockController.getStocks
 );
 
+// GET /stocks?timespan=unixTimestamp:unixTimestamp
+router.get(
+	'/stocks/timespan',
+	cacheMiddleware(null, 'timespan'),
+	stockController.getTimespan
+);
+
 module.exports = router;
