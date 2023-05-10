@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/.env.dev nodemon src/index.js",
     "seed-database": "env-cmd -f ./config/.env.db node src/scripts/seedDatabase.js",
-    "clear-cache": "node src/scripts/clearCache.js"
+    "clear-cache": "node src/scripts/clearCache.js",
+	"test": "env-cmd -f ./config/.env.test jest --watch --runInBand"
   },
   "jest": {
     "testEnvironment": "node"
@@ -25,6 +26,8 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.16"
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.3.3"
   }
 }

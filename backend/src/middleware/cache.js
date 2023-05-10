@@ -4,6 +4,10 @@ const getKeyFromRequest = (req, cachingKey) => req.query[cachingKey];
 
 const cacheMiddleware = (cachingKey, cachingParameter) => {
 	return async (req, res, next) => {
+		if (process.env.NODE_ENV === 'test') {
+			return next();
+		}
+
 		const key = getKeyFromRequest(req, cachingKey) || cachingParameter;
 		const content = await getAsync(key);
 

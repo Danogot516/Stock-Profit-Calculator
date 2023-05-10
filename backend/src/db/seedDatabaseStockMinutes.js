@@ -19,10 +19,12 @@ const seedDatabaseStocksMinutes = async (chunkSize = 20000) => {
 	for (let i = 0; i < stocks.length; i += 60) {
 		const prices = findProfitPrices(stocks.slice(i, i + 60), true);
 
-		stockPricesMinutes.push({
-			timestamp: startDate + i * 1000,
-			stocks: [...prices],
-		});
+		if (prices.length) {
+			stockPricesMinutes.push({
+				timestamp: startDate + i * 1000,
+				stocks: [...prices],
+			});
+		}
 	}
 
 	console.log('Generated best stock prices for each minute');
