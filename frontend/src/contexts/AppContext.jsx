@@ -15,7 +15,7 @@ const AppProvider = ({ children }) => {
 
 	return (
 		<AppContext.Provider
-			value={(timestamps, isDarkTheme, setTimestamps, setIsDarkTheme)}
+			value={{ timestamps, isDarkTheme, setTimestamps, setIsDarkTheme }}
 		>
 			{children}
 		</AppContext.Provider>
