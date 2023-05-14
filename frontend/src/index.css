@@ -77,6 +77,7 @@ select {
 h2 {
 	font-size: 26px;
 	margin-bottom: 10px;
+	line-height: 1;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -93,4 +94,18 @@ h2 {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+
+.player {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	border: 1px solid #3498ff;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.player--error {
+	border-color: #ff725e;
 }

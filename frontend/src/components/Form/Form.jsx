@@ -3,12 +3,12 @@ import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import { useTimespan } from '../../hooks/useTimespan';
 import { AppContext } from '../../contexts/AppContext';
-import Box from '../Box/Box';
 import { Player } from '@lottiefiles/react-lottie-player';
 import stocks from '../../assets/stocks.json';
 import Spinner from '../Spinner';
 import styles from './Form.module.scss';
 import customDateRenderer from '../../utils/customDateRenderer';
+import Error from '../Error';
 
 const { combine, before, after } = DateRangePicker;
 
@@ -47,7 +47,7 @@ const Form = () => {
 	return isLoading ? (
 		<Spinner />
 	) : isError ? (
-		<p>Error</p>
+		<Error title='Error' message='Service is currently unavailable' />
 	) : (
 		<>
 			<form
@@ -92,7 +92,7 @@ const Form = () => {
 				</button>
 			</form>
 
-			<div className={styles.player}>
+			<div className='player'>
 				<Player autoplay loop src={stocks} style={{ width: '210px' }} />
 			</div>
 		</>

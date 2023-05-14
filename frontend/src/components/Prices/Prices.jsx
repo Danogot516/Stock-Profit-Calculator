@@ -1,15 +1,14 @@
-import { useContext, useState } from 'react';
-import { DateRangePicker } from 'rsuite';
+import { useContext } from 'react';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import { AppContext } from '../../contexts/AppContext';
 import { useStocks } from '../../hooks/useStocks';
-import Box from '../Box/Box';
 import Spinner from '../Spinner';
-
-const { combine, before, after } = DateRangePicker;
+import { Player } from '@lottiefiles/react-lottie-player';
+import noProfit from '../../assets/no-profit.json';
+import Error from '../Error';
 
 const Prices = () => {
-	const { isLoading, isError, data: prices } = useStocks();
+	const { isLoading, isError, data: prices, error } = useStocks();
 	const { setTimestamps } = useContext(AppContext);
 
 	const handleClick = e => {
@@ -18,10 +17,26 @@ const Prices = () => {
 		setTimestamps(null);
 	};
 
+	console.log(error);
+
 	return isLoading ? (
 		<Spinner />
 	) : isError ? (
-		<p>Error</p>
+		<>
+			<Error
+				title={`Error ${error?.response?.status ? error.response.status : ''}`}
+				message={
+					error?.response?.data
+						? error.response.data
+						: 'Something went wrong, please try again later.'
+				}
+				showBackButton
+			/>
+
+			<div className='player player--error'>
+				<Player autoplay loop src={noProfit} />
+			</div>
+		</>
 	) : (
 		<>
 			<p>

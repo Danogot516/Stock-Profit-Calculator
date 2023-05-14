@@ -1,0 +1,27 @@
+.btn {
+	padding: 5px 20px;
+	display: inline-block;
+	border-radius: 6px;
+	background-color: #3498ff;
+	color: #fff;
+	transition: background 0.4s;
+	text-decoration: none;
+
+	&:hover {
+		@media (hover: hover) and (pointer: fine) {
+			background-color: #0381ff;
+		}
+	}
+
+	&:disabled {
+		background-color: #6eb6fd;
+	}
+}
+
+.btn--error {
+	background-color: #ff725e;
+
+	&:hover {
+		background-color: #ff5842;
+	}
+}

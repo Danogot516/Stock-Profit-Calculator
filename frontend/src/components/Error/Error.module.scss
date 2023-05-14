@@ -1,0 +1,15 @@
+/* ------------------------------------------------------------ *\
+	Error.Module
+\* ------------------------------------------------------------ */
+
+.error {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+
+	h2 {
+		margin-bottom: 0;
+	}
+}
