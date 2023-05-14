@@ -1,8 +1,7 @@
 import './App.css';
 import { AppProvider } from '../../contexts/AppContext';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import BoxStocks from '../BoxStocks';
-import BoxPrices from '../BoxPrices';
+import BoxRenderer from '../BoxRenderer';
 
 const queryClient = new QueryClient();
 
@@ -10,9 +9,9 @@ const App = () => {
 	return (
 		<AppProvider>
 			<QueryClientProvider client={queryClient}>
-				<BoxStocks />
+				{/* <h1>Stock Profit Calculator</h1> */}
 
-				<BoxPrices />
+				<BoxRenderer />
 			</QueryClientProvider>
 		</AppProvider>
 	);

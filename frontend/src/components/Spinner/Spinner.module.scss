@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------ *\
+	Spinner.Module
+\* ------------------------------------------------------------ */
+
+.spinner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+
+	.spinner__graphic {
+		width: 90px;
+		height: 120px;
+		overflow: hidden;
+		position: relative;
+
+		> * {
+			width: 200px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -40%);
+		}
+	}
+}

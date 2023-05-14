@@ -1,0 +1,15 @@
+.box {
+	border-radius: 20px;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	gap: 20px;
+	max-width: 800px;
+	width: 100%;
+	min-height: 300px;
+
+	margin-inline: auto;
+}
