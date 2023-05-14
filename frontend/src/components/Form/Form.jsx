@@ -13,7 +13,7 @@ import Error from '../Error';
 const { combine, before, after } = DateRangePicker;
 
 const Form = () => {
-	const { setTimestamps } = useContext(AppContext);
+	const { setTimestamps, setFunds: setContextFunds } = useContext(AppContext);
 	const [values, setValues] = useState(null);
 	const [funds, setFunds] = useState('');
 	const { isLoading, isError, data: timespan } = useTimespan();
@@ -42,6 +42,10 @@ const Form = () => {
 		}
 
 		setTimestamps({ start: values[0], end: values[1] });
+
+		if (funds) {
+			setContextFunds(Number(funds));
+		}
 	};
 
 	return isLoading ? (

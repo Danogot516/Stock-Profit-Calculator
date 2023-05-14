@@ -6,18 +6,20 @@ import Spinner from '../Spinner';
 import { Player } from '@lottiefiles/react-lottie-player';
 import noProfit from '../../assets/no-profit.json';
 import Error from '../Error';
+import Price from '../Price/Price';
+import styles from './Prices.module.scss';
+import Funds from '../Funds';
+import profit from '../../assets/profit.json';
+import Button from '../Button';
+import Profit from '../Profit';
 
 const Prices = () => {
 	const { isLoading, isError, data: prices, error } = useStocks();
-	const { setTimestamps } = useContext(AppContext);
+	const { resetData, funds } = useContext(AppContext);
 
 	const handleClick = e => {
-		e.preventDefault();
-
-		setTimestamps(null);
+		resetData();
 	};
-
-	console.log(error);
 
 	return isLoading ? (
 		<Spinner />
@@ -39,16 +41,31 @@ const Prices = () => {
 		</>
 	) : (
 		<>
-			<p>
-				Price 1: {prices[0].price} on {new Date(prices[0].timestamp).toString()}
-			</p>
-			<p>
-				Price 2: {prices[1].price} on {new Date(prices[1].timestamp).toString()}
-			</p>
+			<div className={styles.prices}>
+				<Price
+					label='Best buy price'
+					price={prices[0].price}
+					timestamp={prices[0].timestamp}
+				/>
 
-			<a href='#' onClick={handleClick}>
-				Find other prices
-			</a>
+				<Price
+					label='Best sell price'
+					price={prices[1].price}
+					timestamp={prices[1].timestamp}
+				/>
+
+				<Funds funds={funds} minPrice={prices[0].price} />
+
+				<Profit funds={funds} prices={prices} />
+			</div>
+
+			<div className={styles.actions}>
+				<div className='player'>
+					<Player autoplay loop src={profit} />
+				</div>
+
+				<Button label='Find other prices' onClick={handleClick} />
+			</div>
 		</>
 	);
 };

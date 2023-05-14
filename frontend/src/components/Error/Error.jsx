@@ -5,10 +5,10 @@ import { AppContext } from '../../contexts/AppContext';
 import Button from '../Button';
 
 const Error = ({ title, message, showBackButton }) => {
-	const { setTimestamps } = useContext(AppContext);
+	const { resetData } = useContext(AppContext);
 
 	const handleClick = () => {
-		setTimestamps(null);
+		resetData();
 	};
 
 	return (

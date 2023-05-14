@@ -16,6 +16,11 @@ const AppProvider = ({ children }) => {
 		window.matchMedia('(prefers-color-scheme:dark)').matches
 	);
 
+	const resetData = () => {
+		setTimestamps(null);
+		setFunds(null);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -24,6 +29,7 @@ const AppProvider = ({ children }) => {
 				funds,
 				setTimestamps,
 				setFunds,
+				resetData,
 				setIsDarkTheme,
 			}}
 		>

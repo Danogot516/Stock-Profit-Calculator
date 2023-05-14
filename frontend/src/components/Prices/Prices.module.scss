@@ -1,0 +1,29 @@
+/* ------------------------------------------------------------ *\
+	Prices.Module
+\* ------------------------------------------------------------ */
+
+.prices {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.actions {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+
+	> * {
+		width: 100% !important;
+	}
+
+	> div {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
