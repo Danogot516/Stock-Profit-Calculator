@@ -9,7 +9,7 @@ const Funds = ({ funds, minPrice }) => {
 					<strong>Available funds:</strong>
 				</p>
 
-				<p>{funds ? `${funds}$` : 'None'}</p>
+				<p>{funds ? `${funds.toFixed(2)}$` : 'None'}</p>
 			</div>
 
 			<div className='funds__row'>

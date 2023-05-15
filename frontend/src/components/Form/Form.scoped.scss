@@ -12,6 +12,10 @@
 	--form-text-color: #000;
 	--form-placeholder-color: #8e8e93;
 
+	@media (max-width: 1024px) {
+		width: 100%;
+	}
+
 	body.theme-dark & {
 		--form-border-color: #3c3f44;
 		--form-border-action-color: #34c3ff;

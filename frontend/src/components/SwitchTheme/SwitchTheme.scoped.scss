@@ -6,4 +6,12 @@
 	position: fixed;
 	top: 20px;
 	right: 20px;
+	box-shadow: rgba(0, 0, 0, 0.1) 5px 0 12px;
+	background-color: #fff;
+	border-radius: 50%;
+	padding: 7px;
+
+	body.theme-dark & {
+		background-color: #1a1d24;
+	}
 }
