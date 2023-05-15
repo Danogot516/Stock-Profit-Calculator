@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import styles from './Box.module.scss';
+import './Box.scoped.scss';
 
 const Box = ({ children }) => {
-	return <div className={styles.box}>{children}</div>;
+	return <div className='box'>{children}</div>;
 };
 
 Box.propTypes = {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Error.module.scss';
+import './Error.scoped.scss';
 import { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import Button from '../Button';
@@ -12,7 +12,7 @@ const Error = ({ title, message, showBackButton }) => {
 	};
 
 	return (
-		<div className={styles.error}>
+		<div className='error'>
 			<h2>{title}</h2>
 
 			<p>{message}</p>

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import styles from './Funds.module.scss';
+import './Funds.scoped.scss';
 
 const Funds = ({ funds, minPrice }) => {
 	return (
-		<div className={styles.funds}>
-			<div className={styles['funds__row']}>
+		<div className='funds'>
+			<div className='funds__row'>
 				<p>
 					<strong>Available funds:</strong>
 				</p>
@@ -12,7 +12,7 @@ const Funds = ({ funds, minPrice }) => {
 				<p>{funds ? `${funds}$` : 'None'}</p>
 			</div>
 
-			<div className={styles['funds__row']}>
+			<div className='funds__row'>
 				<p>
 					<strong>Stock ammount:</strong>
 				</p>

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import customDateRenderer from '../../utils/customDateRenderer';
-import styles from './Price.module.scss';
+import './Price.scoped.scss';
 const Price = ({ label, price, timestamp }) => {
 	return (
-		<div className={styles.price}>
-			<div className={styles['price__row']}>
+		<div className='price'>
+			<div className='price__row'>
 				<p>
 					<strong>{label}:</strong>
 				</p>
@@ -12,7 +12,7 @@ const Price = ({ label, price, timestamp }) => {
 				<p>{price}$</p>
 			</div>
 
-			<div className={styles['price__row']}>
+			<div className='price__row'>
 				<p>
 					<strong>Listed on:</strong>
 				</p>

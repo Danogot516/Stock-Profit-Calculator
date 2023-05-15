@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import styles from './Profit.module.scss';
+import './Profit.scoped.scss';
 
 const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 	const stocksAmmount =
 		funds / minPrice.price < 1 ? 10 : Math.ceil(funds / minPrice.price);
 
 	return (
-		<div className={styles.profit}>
-			<div className={styles['profit__row']}>
+		<div className='profit'>
+			<div className='profit__row'>
 				<p>
 					<strong>Investment:</strong>
 				</p>
@@ -15,7 +15,7 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 				<p>{(stocksAmmount * minPrice.price).toFixed(2)}$</p>
 			</div>
 
-			<div className={styles['profit__row']}>
+			<div className='profit__row'>
 				<p>
 					<strong>Exit price:</strong>
 				</p>
@@ -23,7 +23,7 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 				<p>{(stocksAmmount * maxPrice.price).toFixed(2)}$</p>
 			</div>
 
-			<div className={styles['profit__row']}>
+			<div className='profit__row'>
 				<p>
 					<strong>Profit:</strong>
 				</p>

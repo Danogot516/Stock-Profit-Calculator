@@ -15,7 +15,7 @@
 		overflow: hidden;
 		position: relative;
 
-		> * {
+		::v-deep .lf-player-container {
 			width: 200px;
 			position: absolute;
 			top: 50%;

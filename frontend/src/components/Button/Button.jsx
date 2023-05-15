@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Button.module.scss';
+import './Button.scoped.scss';
 
 const Button = ({ label, className, onClick }) => {
 	const handleClick = e => {
@@ -8,16 +8,8 @@ const Button = ({ label, className, onClick }) => {
 		onClick();
 	};
 
-	const classNames = className ? `btn ${className}` : 'btn';
-
 	return (
-		<a
-			className={classNames
-				.split(' ')
-				.reduce((acc, curr) => `${acc} ${styles[curr]}`, '')}
-			href='#'
-			onClick={handleClick}
-		>
+		<a className={`btn ${className}`} href='#' onClick={handleClick}>
 			{label}
 		</a>
 	);

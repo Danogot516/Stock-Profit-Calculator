@@ -7,7 +7,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import noProfit from '../../assets/no-profit.json';
 import Error from '../Error';
 import Price from '../Price/Price';
-import styles from './Prices.module.scss';
+import './Prices.scoped.scss';
 import Funds from '../Funds';
 import profit from '../../assets/profit.json';
 import Button from '../Button';
@@ -41,7 +41,7 @@ const Prices = () => {
 		</>
 	) : (
 		<>
-			<div className={styles.prices}>
+			<div className='prices'>
 				<Price
 					label='Best buy price'
 					price={prices[0].price}
@@ -59,7 +59,7 @@ const Prices = () => {
 				<Profit funds={funds} prices={prices} />
 			</div>
 
-			<div className={styles.actions}>
+			<div className='actions'>
 				<div className='player'>
 					<Player autoplay keepLastFrame src={profit} />
 				</div>
