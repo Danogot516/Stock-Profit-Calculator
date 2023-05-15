@@ -25,6 +25,10 @@
 		width: 85%;
 	}
 
+	::v-deep .rs-picker-toggle-value {
+		color: var(--form-text-color);
+	}
+
 	.form__field {
 		padding: 7px 11px;
 		font-size: 14px;

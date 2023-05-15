@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const AppContext = createContext({
 	timestamps: null,
-	setTimestamps: newTimestamps => {},
+	setTimestamps: () => {},
 	funds: null,
 	isDarkTheme: '',
-	setIsDarkTheme: isDarkTheme => {},
+	toggleIsDarkTheme: () => {},
 });
 
 const AppProvider = ({ children }) => {
@@ -21,6 +21,10 @@ const AppProvider = ({ children }) => {
 		setFunds(null);
 	};
 
+	const toggleIsDarkTheme = () => {
+		setIsDarkTheme(prev => !prev);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -30,7 +34,7 @@ const AppProvider = ({ children }) => {
 				setTimestamps,
 				setFunds,
 				resetData,
-				setIsDarkTheme,
+				toggleIsDarkTheme,
 			}}
 		>
 			{children}
