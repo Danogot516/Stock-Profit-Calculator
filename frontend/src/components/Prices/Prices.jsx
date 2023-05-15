@@ -36,7 +36,7 @@ const Prices = () => {
 			/>
 
 			<div className='player player--error'>
-				<Player autoplay loop src={noProfit} />
+				<Player autoplay keepLastFrame src={noProfit} />
 			</div>
 		</>
 	) : (
@@ -61,7 +61,7 @@ const Prices = () => {
 
 			<div className={styles.actions}>
 				<div className='player'>
-					<Player autoplay loop src={profit} />
+					<Player autoplay keepLastFrame src={profit} />
 				</div>
 
 				<Button label='Find other prices' onClick={handleClick} />

@@ -35,7 +35,7 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 };
 
 Profit.propTypes = {
-	funds: PropTypes.number.isRequired,
+	funds: PropTypes.number,
 	prices: PropTypes.array.isRequired,
 };
 

@@ -26,7 +26,7 @@ const Funds = ({ funds, minPrice }) => {
 };
 
 Funds.propTypes = {
-	funds: PropTypes.number.isRequired,
+	funds: PropTypes.number,
 	minPrice: PropTypes.number.isRequired,
 };
 
