@@ -7,6 +7,7 @@
     "start": "node src/index.js",
     "dev": "env-cmd -f ./config/.env.dev nodemon src/index.js",
     "seed-database": "env-cmd -f ./config/.env.db node src/scripts/seedDatabase.js",
+    "seed-database-minutes": "env-cmd -f ./config/.env.db node src/scripts/seedDatabaseMinutes.js",
     "clear-cache": "node src/scripts/clearCache.js",
     "test": "env-cmd -f ./config/.env.test jest --watch --runInBand"
   },
