@@ -9,7 +9,7 @@ const Price = ({ label, price, timestamp }) => {
 					<strong>{label}:</strong>
 				</p>
 
-				<p>{price}$</p>
+				<p>${price}</p>
 			</div>
 
 			<div className='price__row'>
