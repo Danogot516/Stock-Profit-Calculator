@@ -4,5 +4,13 @@ import { reactScopedCssPlugin } from 'rollup-plugin-react-scoped-css';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	server: {
+		host: true,
+		strictPort: true,
+		port: 5173,
+		watch: {
+			usePolling: true,
+		},
+	},
 	plugins: [react(), reactScopedCssPlugin()],
 });

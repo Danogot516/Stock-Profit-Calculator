@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  mongodb:
+    container_name: 'database_container'
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongoDB:/data/db
+    ports:
+      - '27017:27017'
+
+  backend:
+    container_name: 'backend_container'
+    volumes:
+      - ./backend/src:/backend/src
+    build:
+      context: ./backend
+      args:
+        - PORT=3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+    environment:
+      - PORT=3000
+      - MONGODB_URL=mongodb://mongodb:27017/stock-profit-api
+      - MAX_WORKERS_THREADS=4
+      - PRICE=200
+      - CHUNK_SIZE=20000
+      - START_DATE="2023-05-01"
+      - END_DATE="2023-06-01"
+
+  frontend:
+    container_name: 'frontend_container'
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/frontend/src
+    ports: 
+      - '5173:5173'
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://127.0.0.1:3000
+      - VITE_STOCKS_PATH=/stocks
+      - VITE_TIMESPAN_PATH=/stocks/timespan
+
+volumes:
+  mongoDB: {}
