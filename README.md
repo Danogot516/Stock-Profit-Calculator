@@ -13,4 +13,4 @@ The database seeding script uses the environment variables defined in the docker
 
 Docker images use local files as volumes, which allows the developer to change files locally and have the containers update their files as well.
 
-In order to run the backend tests you must run `docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend_container yarn test`
+In order to run the backend tests you must run `docker-compose -f docker-compose.yml -f docker-compose.test.yml run backend yarn test`
