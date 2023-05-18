@@ -9,7 +9,14 @@ const Funds = ({ funds, minPrice }) => {
 					<strong>Available funds:</strong>
 				</p>
 
-				<p>{funds ? `$${funds.toFixed(2)}` : 'None'}</p>
+				<p>
+					{funds
+						? `$${funds.toLocaleString('en-US', {
+								minimumFractionDigits: 2,
+								maximumFractionDigits: 2,
+						  })}`
+						: 'None'}
+				</p>
 			</div>
 
 			<div className='funds__row'>
@@ -18,7 +25,9 @@ const Funds = ({ funds, minPrice }) => {
 				</p>
 
 				<p>
-					{funds / minPrice < 1 ? '0 (10 free)' : Math.ceil(funds / minPrice)}
+					{funds / minPrice < 1
+						? '0 (10 free)'
+						: Math.ceil(funds / minPrice).toLocaleString('en-US')}
 				</p>
 			</div>
 		</div>

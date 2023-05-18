@@ -9,7 +9,13 @@ const Price = ({ label, price, timestamp }) => {
 					<strong>{label}:</strong>
 				</p>
 
-				<p>${price}</p>
+				<p>
+					$
+					{price.toLocaleString('en-US', {
+						minimumFractionDigits: 2,
+						maximumFractionDigits: 2,
+					})}
+				</p>
 			</div>
 
 			<div className='price__row'>

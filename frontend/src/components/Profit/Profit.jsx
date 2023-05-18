@@ -12,7 +12,13 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 					<strong>Investment:</strong>
 				</p>
 
-				<p>${(stocksAmmount * minPrice.price).toFixed(2)}</p>
+				<p>
+					$
+					{(stocksAmmount * minPrice.price).toLocaleString('en-US', {
+						minimumFractionDigits: 2,
+						maximumFractionDigits: 2,
+					})}
+				</p>
 			</div>
 
 			<div className='profit__row'>
@@ -20,7 +26,13 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 					<strong>Exit price:</strong>
 				</p>
 
-				<p>${(stocksAmmount * maxPrice.price).toFixed(2)}</p>
+				<p>
+					$
+					{(stocksAmmount * maxPrice.price).toLocaleString('en-US', {
+						minimumFractionDigits: 2,
+						maximumFractionDigits: 2,
+					})}
+				</p>
 			</div>
 
 			<div className='profit__row'>
@@ -28,7 +40,16 @@ const Profit = ({ funds, prices: [minPrice, maxPrice] }) => {
 					<strong>Profit:</strong>
 				</p>
 
-				<p>${(stocksAmmount * (maxPrice.price - minPrice.price)).toFixed(2)}</p>
+				<p>
+					$
+					{(stocksAmmount * (maxPrice.price - minPrice.price)).toLocaleString(
+						'en-US',
+						{
+							minimumFractionDigits: 2,
+							maximumFractionDigits: 2,
+						}
+					)}
+				</p>
 			</div>
 		</div>
 	);

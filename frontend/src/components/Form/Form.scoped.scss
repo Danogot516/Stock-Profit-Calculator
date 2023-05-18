@@ -60,6 +60,16 @@
 		}
 	}
 
+	.form__field[type='number'] {
+		-moz-appearance: textfield;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+	}
+
 	.form__submit-btn {
 		padding: 5px 20px;
 		display: inline-block;
